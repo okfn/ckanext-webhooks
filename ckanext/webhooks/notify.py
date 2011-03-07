@@ -22,12 +22,9 @@ class WebhooksWorker(Worker):
             'entity-type': routing_key,
             'operation-type': OP_MAP.get(operation)
             })
-        try:
-            req = urllib2.Request(target, req_data, 
-                    {'Content-type': 'application/json'})
-            urlfh = urllib2.urlopen(req)
-            urlfh.close()
-        except urllib2.HTTPError, hte: 
-            log.exception(hte)
+        req = urllib2.Request(target, req_data, 
+                {'Content-type': 'application/json'})
+        urlfh = urllib2.urlopen(req)
+        urlfh.close()
 
 
